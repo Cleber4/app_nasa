@@ -26,13 +26,13 @@ void main() {
     mediaUrl: 'Test MediaUrl: OK',
   );
 
-  final tdate = DateTime(2021, 8, 2);
+  final tDate = DateTime(2021, 8, 2);
 
-  test('Getting date from repository for Space Media Entity', () async {
-    when(() => repository.getSpaceMediaFromDate(tdate))
+  test('Recebendo dados do repositório pelo Space Media Entity', () async {
+    when(() => repository.getSpaceMediaFromDate(tDate))
         .thenAnswer((_) async => Right<Failure, SpaceMediaEntity>(tSpaceMedia));
-    final result = await usecase(tdate);
+    final result = await usecase(tDate);
     expect(result, Right(tSpaceMedia));
-    verify(() => repository.getSpaceMediaFromDate(tdate));
+    verify(() => repository.getSpaceMediaFromDate(tDate)).called(1);
   });
 }
